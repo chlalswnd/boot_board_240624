@@ -1,0 +1,25 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.boot.dao.BoardDAO">
+    <select id="list" resultType="com.boot.dto.BoardDTO">
+        select boardNo, boardName, boardTitle, boardContent, boardDate, boardHit from tbl_board
+    </select>
+    
+    <insert id="write">
+        insert into tbl_board(boardName, boardTitle, boardContent, boardHit) values(#{boardName},#{boardTitle},#{boardContent},0)
+    </insert>
+
+    <select id="contentView" resultType="com.boot.dto.BoardDTO">
+        select boardNo, boardName, boardTitle, boardContent, boardDate, boardHit from tbl_board where boardNo=#{boardNo}
+    </select>
+
+    <update id="modify">
+        update tbl_board set boardName=#{boardName}, boardTitle=#{boardTitle}, boardContent=#{boardContent} where boardNo =#{boardNo}
+    </update>
+
+    <delete id="delete">
+        delete from tbl_board where boardNo =#{boardNo}
+    </delete>
+</mapper>
